@@ -3,10 +3,14 @@
 
 event_inherited();
 
-seat = [];
-
+for (var i=0; i<4; i++)
+{
+	var seat_ = instance_create_layer(x,y,"Instances",seat);
+	seat_.tab = self;
+	seat_.dir = 90*i; //amgle from the table the chair is located
+	seat_.setup = true;
+}
 seated = 0;
-index = instance_number(table);
 
-seats_x = [sprite_width,0,-sprite_width,0];
-seats_y = [0,-sprite_height,0,sprite_height];
+//seats_x = [x+sprite_width,x,x-sprite_width,x];
+//seats_y = [y,y-sprite_height,y,y+sprite_height];

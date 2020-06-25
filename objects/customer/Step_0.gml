@@ -29,6 +29,7 @@ if state == "queue" && !done
 		state = "order";
 		done = true;
 		countdown = 120;
+		counter.pay_ready = true;
 	}
 }
 
@@ -41,7 +42,13 @@ if state == "find_seat" && !done
 {
 	//movewment
 	mp_potential_step(goto_x,goto_y,3,false);
+	lost --;
 	
+	if lost == 0
+	{
+		find_seat(self);
+		lost = 300;
+	}
 	//update state
 	if abs(x-goto_x) < 5 && abs(y-goto_y) < 5
 	{

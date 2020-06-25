@@ -4,7 +4,16 @@
     "mvc": "1.0",
     "name": "orders",
     "eventList": [
-        
+        {
+            "id": "c53f8816-03d8-4ba3-904c-58140656d008",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "35fc61fa-f21f-4d85-8682-a0bd762a308c"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,

@@ -4,8 +4,9 @@
 features = [];
 creepped = 0;
 state = "working";
-job = "register";
+job = "idle";
 hover = false;
+work_area = noone;
 
 /* 
 states

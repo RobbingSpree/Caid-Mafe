@@ -4,8 +4,8 @@
 event_inherited();
 
 staffed_by = noone;
-stationx = x-sprite_width/2;
-stationy = y;
+
+pay_ready = false;
 
 queue_len = 0;
 queue = ds_stack_create();

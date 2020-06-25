@@ -1,6 +1,4 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-job = "idle";
-
-staffed_by = noone;
+o = ds_stack_create();

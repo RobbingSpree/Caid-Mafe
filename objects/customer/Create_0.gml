@@ -17,7 +17,7 @@ lurking
 leaving
 */
 
-order = "";
+order = "Food";
 funds = 20;
 enjoyment = 50;
 staff_likes = [];
@@ -26,3 +26,4 @@ goto_x = x;
 goto_y = y;
 done = false;
 countdown = 0;
+lost = 300;

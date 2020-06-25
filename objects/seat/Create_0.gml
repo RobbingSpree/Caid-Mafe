@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-job = "idle";
-
-staffed_by = noone;
+tab = noone; //parent table
+setup = false;
+dir = 0;
