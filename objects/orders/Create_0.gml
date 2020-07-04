@@ -2,3 +2,4 @@
 // You can write your code in this editor
 
 o = ds_stack_create();
+s = ds_stack_create();

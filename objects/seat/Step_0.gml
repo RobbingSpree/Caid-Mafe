@@ -13,4 +13,7 @@ if setup == true
 	setup = false;
 	x=nx;
 	y=ny;
+	
+	index = ds_stack_size(orders.s);
+	ds_stack_push(orders.s,self);
 }

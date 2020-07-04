@@ -22,6 +22,7 @@ funds = 20;
 enjoyment = 50;
 staff_likes = [];
 food_likes = [];
+focus = noone;
 goto_x = x;
 goto_y = y;
 done = false;
