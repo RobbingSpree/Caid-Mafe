@@ -3,5 +3,6 @@
 
 tab = noone; //parent table
 setup = false;
+sitting = false;
 dir = 0;
 index = 0;

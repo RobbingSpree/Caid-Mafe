@@ -5,12 +5,19 @@ with argument0
 	var st = noone;
 	var cpy = ds_stack_create();
 	ds_stack_copy(cpy,orders.s);
-	var int = ds_stack_size(orders.s)-1;
+	//var int = ds_stack_size(orders.s)-1;
 	
-	for (var i=1; i<irandom(int); i++)
+	while (st != noone)
 	{
 		st = ds_stack_pop(cpy);
-	}
+		
+		if ds_stack_size(cpy) < 1
+		{
+			state = "leave";
+			return;
+		}
+	}	
+		
 	ds_stack_destroy(cpy);
 	
 	//set empty seat as destination

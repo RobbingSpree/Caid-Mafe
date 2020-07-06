@@ -3,3 +3,5 @@
 
 o = ds_stack_create();
 s = ds_stack_create();
+
+step2 =2;

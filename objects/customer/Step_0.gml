@@ -40,6 +40,8 @@ if state == "order" && !done
 
 if state == "find_seat" && !done
 {
+	if takeout
+		state= "leave";
 	//movewment
 	mp_potential_step(goto_x,goto_y,3,false);
 	lost --;
@@ -47,7 +49,7 @@ if state == "find_seat" && !done
 	if lost == 0
 	{
 		find_seat(self);
-		lost = 300;
+		lost = 100;
 	}
 	//update state
 	if abs(x-goto_x) < 5 && abs(y-goto_y) < 5
@@ -55,6 +57,20 @@ if state == "find_seat" && !done
 		state = "seated";
 		done = true;
 		countdown = 120;
+	}
+}
+
+if state == "leave"
+{
+	goto_x = door.x;
+	goto_y = door.y;
+	
+	//movewment
+	mp_potential_step(goto_x,goto_y,3,false);
+	
+	if abs(x-goto_x) < 5 && abs(y-goto_y) < 5
+	{
+		instance_destroy(self);
 	}
 }
 
