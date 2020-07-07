@@ -41,7 +41,11 @@ if state == "order" && !done
 if state == "find_seat" && !done
 {
 	if takeout
+	{
 		state= "leave";
+		done = true;
+		countdown = 50;
+	}
 	//movewment
 	mp_potential_step(goto_x,goto_y,3,false);
 	lost --;
@@ -56,11 +60,18 @@ if state == "find_seat" && !done
 	{
 		state = "seated";
 		done = true;
-		countdown = 120;
+		countdown = 500;
 	}
 }
 
-if state == "leave"
+if state == "seated" && !done
+{
+	state = "leave";
+		done = true;
+		countdown = 50;
+}
+
+if state == "leave" && !done
 {
 	goto_x = door.x;
 	goto_y = door.y;
