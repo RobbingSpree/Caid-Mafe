@@ -1,18 +1,23 @@
 /// @description Insert description here
 depth = -y;
 
-if mouse_over(self) && mouse_check_button_pressed(mb_left)
+hover = false;
+if mouse_over(self) 
 {
-	if controller.grabbing == noone
+	hover = true;
+	if mouse_check_button_pressed(mb_left)
 	{
-		controller.grabbing = self
-		if state == "working" && work_area != noone
+		if controller.grabbing == noone
 		{
-			//update work area to not be flagged as occupied
-			work_area.staffed_by = noone;
-			work_area = noone;
+			controller.grabbing = self
+			if state == "working" && work_area != noone
+			{
+				//update work area to not be flagged as occupied
+				work_area.staffed_by = noone;
+				work_area = noone;
+			}
+			state = "grabbed";
 		}
-		state = "grabbed";
 	}
 }
 

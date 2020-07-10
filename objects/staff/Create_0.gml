@@ -6,6 +6,7 @@ creepped = 0;
 state = "working";
 job = "idle";
 hover = false;
+name = "Test Name";
 work_area = noone;
 
 /* 

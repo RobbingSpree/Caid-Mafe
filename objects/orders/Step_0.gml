@@ -5,6 +5,7 @@ if step2 > 0
 if step2 == 0
 {
 	//integrity check on seat stack
+	/*
 	var cpy = ds_stack_create();
 	for (var i=0; i<ds_stack_size(s)+1; i++)
 	{
@@ -20,7 +21,11 @@ if step2 == 0
 		var tmp = ds_stack_pop(cpy);
 		ds_stack_push(s,tmp);
 	}
-	step2--;
+	
 	ds_stack_destroy(cpy);
+	*/
 	shuffle_stack(s);
+	
+	shuffle_stack(l);
+	step2--;
 }

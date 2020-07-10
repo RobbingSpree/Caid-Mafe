@@ -2,111 +2,131 @@
 // You can write your code in this editor
 
 depth = -y;
-show_stats=false;
+show_stats=true;
+image_index = 0;
 
+ani_loop ++
+if ani_loop == ani_spd
+{
+	ani ++;
+	ani_loop=0;
+}
+delay++
+/*
 if mouse_over(self)
 	show_stats=true;
+*/
 
-if state == "enter" && !done
+if delay != (delay_period+delay_range)
 {
-	goto_x = counter.queue_x;
-	goto_y = counter.queue_y+ds_stack_size(counter.queue)*(sprite_height+8);
+	var perc = distance_to_point(goto_x,goto_y)/room_width*100;
+	if perc<5 relitive_spd = 1;
+	if perc<20 relitive_spd = 2;
+	if perc>=20 relitive_spd = 3;
 	
-	
-	//movewment
-	mp_potential_step(goto_x,goto_y,3,false);
-	
-	//update state
-	if abs(x-goto_x) < 5 && abs(y-goto_y) < 5
-	{
-		state = "queue";
-		done = true;
-		countdown = 120;
-		join_queue(self);
-	}
+	mp_potential_step(goto_x,goto_y,relitive_spd,false);
 }
 
-if state == "queue" && !done
+
+if state == "enter"
 {
-	if ds_stack_top(counter.queue) == self
+	//option to go look at menu first
+	join_queue(self);
+	queue_spot++ //add extra buffer in queue to help identify customer at head of queue
+	state = "queue";
+	delay = 0;
+	delay_period=1;
+	delay_range = 1;
+}
+
+if state == "queue" && delay == (delay_period+delay_range)
+{
+	goto_x=counter.queue_x;
+	goto_y=counter.queue_y+(sprite_height+8)*queue_spot;
+	
+	if ds_queue_head(counter.queue) == self && am_i_close(goto_x,goto_y)
 	{
 		state = "order";
-		done = true;
-		countdown = 120;
-		counter.pay_ready = true;
-		with customer
-		{
-			if queue_spot > -1
-				queue_spot--;
-			countdown = 120;
-		}
-	} else {
-		goto_y = counter.queue_y+queue_spot*(sprite_height+8);
-		
-		if abs(y-goto_y) > 5
-		{
-			//move forward in queue
-			y=lerp(y,goto_y,0.25);
-		}
+		queue_spot=0;
+		goto_y=counter.queue_y+8;
+		delay_period=120
 	}
+	delay = 1;
+	delay_period=30
+	delay_range = irandom_range(10,30);
 }
 
-if state == "order" && !done
+if state == "order" && delay == (delay_period+delay_range)
 {
-	//state update handled by staff on register job
+	ds_queue_enqueue(orders.o,order);
+	ds_queue_enqueue(orders.peeps,self);
+	state= "leave_queue";
+	delay = 1;
+	delay_range = irandom_range(10,30);
 }
 
-if state == "find_seat" && !done
+if state == "leave_queue" //instantly do this logic
 {
+	//get item behind and update queue_spot
+	with customer
+	{
+		if queue_spot >0
+		queue_spot --
+	}
+	counter.queue_len--
+	ds_queue_dequeue(counter.queue)
+	goto_x= x+sprite_width+8;
+	//move to seat or lounge depending on flag
 	if takeout
-	{
-		state= "leave";
-		done = true;
-		countdown = 50;
-	}
-	//movewment
-	mp_potential_step(goto_x,goto_y,3,false);
-	lost --;
-	
-	if lost == 0
-	{
+		find_lounge(self);
+	else 
 		find_seat(self);
-		lost = 100;
-	}
-	//update state
-	if abs(x-goto_x) < 5 && abs(y-goto_y) < 5
+	state = "find_chair";
+	delay = 1;
+	delay_range = irandom_range(10,30);
+}
+
+if state == "find_chair" && delay == (delay_period+delay_range)
+{
+	//get target lounge
+	if am_i_close(goto_x,goto_y)
+		state = "wait"
+	delay = 1;
+	delay_range = irandom_range(10,30);
+}
+
+if state == "wait" 
+{
+	debug -- 
+	if debug == 0
+		state = "leave";
+	delay = 1;
+	delay_range = irandom_range(10,30);
+}
+
+if state == "eating" && delay == (delay_period+delay_range)
+{
+	
+}
+
+if state == "leave" 
+{
+	//add chair back into list
+	if takeout && focus != noone
 	{
-		state = "seated";
-		done = true;
-		countdown = 500;
+		ds_stack_push(orders.l,focus);
+		shuffle_stack(orders.l);
+		focus = noone;
+	}else {
+		ds_stack_push(orders.s,focus);
+		shuffle_stack(orders.s);
+		focus = noone;
 	}
-}
-
-if state == "seated" && !done
-{
-	state = "leave";
-		done = true;
-		countdown = 50;
-}
-
-if state == "leave" && !done
-{
+	
 	goto_x = door.x;
 	goto_y = door.y;
 	
-	//movewment
-	mp_potential_step(goto_x,goto_y,3,false);
-	
-	if abs(x-goto_x) < 5 && abs(y-goto_y) < 5
-	{
+	if am_i_close(goto_x,goto_y)
 		instance_destroy(self);
-	}
 }
 
-//state machine buffer
-if done 
-{
-	countdown --
-	if countdown <- 0
-		done = false;
-}
