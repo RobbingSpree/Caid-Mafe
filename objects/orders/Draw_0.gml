@@ -3,7 +3,7 @@
 
 //x=736
 //y=128
-
+/*
 //draw to seats
 var cpy = ds_stack_create();
 ds_stack_copy(cpy,s);

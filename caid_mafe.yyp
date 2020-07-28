@@ -135,6 +135,14 @@
             }
         },
         {
+            "Key": "3d54f0de-e399-4929-b6ed-950882f43119",
+            "Value": {
+                "id": "8a546948-8a50-4c7d-99f4-caf1309a5263",
+                "resourcePath": "sprites\\clock_spr\\clock_spr.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "3dfeec66-a1ec-4600-b51c-81e6eab7a267",
             "Value": {
                 "id": "bd168de5-c6bf-4aa9-b41f-cbf670665421",
