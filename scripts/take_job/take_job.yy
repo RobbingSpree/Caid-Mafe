@@ -1,8 +1,12 @@
 {
-    "id": "75e61045-afe8-4571-ae27-022f7647ef73",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "take_job",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "take_job",
+  "tags": [],
+  "resourceType": "GMScript",
 }

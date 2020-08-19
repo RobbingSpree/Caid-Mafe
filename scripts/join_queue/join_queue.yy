@@ -1,8 +1,12 @@
 {
-    "id": "e5784c4f-d261-468e-9e22-eecaee158655",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "join_queue",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "join_queue",
+  "tags": [],
+  "resourceType": "GMScript",
 }
